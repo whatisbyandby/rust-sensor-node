@@ -30,9 +30,9 @@ fn test_producer(){
             .create()
             .unwrap();
 
-//    let mut buf = String::with_capacity(2);
-//
-//    let _ = write!(&mut buf, "{}", 1); // some computation of the message data to be sent
+    let mut buf = String::with_capacity(2);
+
+    let _ = write!(&mut buf, "{}", 1); // some computation of the message data to be sent
 //    producer.send(&Record::from_value("simple_test", buf.as_bytes())).unwrap();
 //    buf.clear();
 }
