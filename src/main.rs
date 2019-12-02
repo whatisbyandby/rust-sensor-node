@@ -9,7 +9,7 @@ use kafka::producer::{Producer, Record, RequiredAcks};
 
 fn main() {
     println!("Starting");
-    test_producer()
+    main_loop()
 }
 
 fn main_loop() {
@@ -18,6 +18,7 @@ fn main_loop() {
         let system_time = SystemTime::now();
         let datetime: DateTime<Utc> = system_time.into();
         println!("{}", datetime.format("%d/%m/%Y %T"));
+        test_producer()
     }
 }
 
@@ -30,10 +31,8 @@ fn test_producer(){
             .unwrap();
 
     let mut buf = String::with_capacity(2);
-    for i in 0..10 {
-        let _ = write!(&mut buf, "{}", i); // some computation of the message data to be sent
-        producer.send(&Record::from_value("simple_test", buf.as_bytes())).unwrap();
-        buf.clear();
-    }
 
+    let _ = write!(&mut buf, "{}", 1); // some computation of the message data to be sent
+    producer.send(&Record::from_value("simple_test", buf.as_bytes())).unwrap();
+    buf.clear();
 }
